@@ -1,0 +1,75 @@
+// This html is for direct SSR using 
+
+return res.end(`
+        <html>
+            <head>
+                <title>URL Shortener</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #121212;
+                        color: #fff;
+                        margin: 0;
+                        padding: 20px;
+                        }
+                        h1 {
+                            color: #fff;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            border: 1px solid #ddd;
+                            margin-top: 20px;
+                        }
+                        th, td {
+                            padding: 10px;
+                            text-align: left;
+                            border-bottom: 1px solid #ddd;
+                        }
+                        th {
+                            background-color:rgb(178, 139, 139);
+                        }
+                </style>
+            </head>
+            <body>
+                <h1>URL Shortener</h1>
+                <table>
+                    <tr>
+                        <th>Short ID</th>
+                        <th>Redirect URL</th>
+                        <th>Visit History</th>
+                    </tr>
+                    ${allUrls.map(url => `
+                        <tr>
+                            <td>${url.shortId}</td>
+                            <td>${url.redirectURL}</td>
+                            <td>${url.visitHistory.length}</td>
+                        </tr>`).join("")}
+                </table>
+            </body>
+            <script>
+                // You can add JavaScript here if needed
+            </script>
+        </html>
+    `)
+
+
+
+
+
+
+///////////////////////////////////
+<html>
+        <head></head>
+        <body>
+            <h1>URL Shortener</h1>
+            <ol>
+                ${allUrls.map((url) => {
+                    return `<li><a href="/${url.shortId}">${url.redirectURL}</a> ${url.visitHistory.length}</li>`
+                }).join("")}
+            </ol>
+        </body>
+        <script>
+            // You can add JavaScript here if needed
+        </script>
+        </html>

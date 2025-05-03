@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #cfbcbc;
+        }
+        a {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #0f1e2d;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <h2>URL Shortner</h2>
+    <% if (locals.Id) { %>
+        <div style="color: #f9f3f3;"><b><p> URL Generated: http://localhost:8001/url/<%= Id %></p></b></div>
+    <% } %>
+    <div>
+        <form method="post" action="/url">
+            <label> Enter Your Original URL.</label>
+            <input type="text" name="url" placeholder="Enter URL" required>
+            <button type="submit">Shorten</button>
+        </form>
+    </div>
+    <div>
+        <% if (locals.urls) { %>
+         <table>
+            <thead>
+                <th>S. No</th>
+                <th>Shortened URL</th>
+                <th>Redirect</th>
+                <th>Click Count</th>
+            </thead>
+            <tbody>
+                <% urls.forEach((url, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= url.shortId %></td>
+                        <td><%= url.redirectURL %></td>
+                        <td><%= url.visitHistory.lenght %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+         </table>
+        <% } %>
+    </div>
+        
+</body>
+</html>

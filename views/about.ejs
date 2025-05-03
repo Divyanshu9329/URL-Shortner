@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divyanshu Pandey - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav {
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2f3e46;
+        }
+
+        .nav-links a {
+            margin-left: 40px;
+            text-decoration: none;
+            color: #354147;
+            font-weight: 500;
+        }
+
+        .hero-section {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-text {
+            font-size: 24px;
+            color: #354147;
+            margin-bottom: 20px;
+        }
+
+        .name {
+            font-size: 48px;
+            font-weight: 600;
+            color: #2f3e46;
+            margin-bottom: 15px;
+        }
+
+        .profession {
+            font-size: 36px;
+            color: #52796f;
+            margin-bottom: 30px;
+            height: 50px;
+        }
+
+        .typewriter {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typewriter::after {
+            content: "|";
+            position: absolute;
+            right: -10px;
+            animation: cursor 1s infinite;
+            color: #2f3e46;
+        }
+
+        @keyframes cursor {
+            0%, 100% { opacity: 0 }
+            50% { opacity: 1 }
+        }
+
+        .description {
+            color: #6b8b8e;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Divyanshu Pandey</div>
+        <div class="nav-links">
+            <a href="test">Home</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <p class="intro-text">Hello, Myself</p>
+        <h1 class="name">Divyanshu Pandey</h1>
+        <h2 class="profession">And I'm a 
+            <span class="typewriter" id="typewriter"></span>
+        </h2>
+        <p class="description">
+            Passionate about creating beautiful and functional websites. 
+            Specializing in modern web design and development with a focus 
+            on user experience and clean code.
+        </p>
+    </section>
+
+    <script>
+        const roles = ["Web Developer", "Student"];
+        let currentRole = 0;
+        let currentText = "";
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function typeWriter() {
+            const fullText = roles[currentRole];
+            
+            if (isDeleting) {
+                currentText = fullText.substring(0, currentText.length - 1);
+                typeSpeed = 50;
+            } else {
+                currentText = fullText.substring(0, currentText.length + 1);
+                typeSpeed = 100;
+            }
+
+            document.getElementById("typewriter").textContent = currentText;
+
+            if (!isDeleting && currentText === fullText) {
+                typeSpeed = 1000;
+                isDeleting = true;
+            } else if (isDeleting && currentText === "") {
+                isDeleting = false;
+                currentRole = (currentRole + 1) % roles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Start the typewriter effect
+        typeWriter();
+    </script>
+</body>
+</html>
